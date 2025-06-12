@@ -1,3 +1,5 @@
+module gym-backend
+
 go 1.21
 
 require (

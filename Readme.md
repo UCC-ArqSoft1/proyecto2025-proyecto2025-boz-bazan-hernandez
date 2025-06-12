@@ -1,4 +1,4 @@
-# Sistema de Gestión de Actividades Deportivas GYM - Backend
+# Sistema de Gestión de Actividades Deportivas
 
 Backend desarrollado en Go para la gestión de actividades deportivas de un gimnasio.
 

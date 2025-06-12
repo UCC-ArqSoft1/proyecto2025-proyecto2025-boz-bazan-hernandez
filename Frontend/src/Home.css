@@ -1,0 +1,137 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  color: #4a5568;
+  margin: 0;
+}
+
+.activities-section {
+  margin-top: 24px;
+}
+
+.results-header {
+  margin-bottom: 20px;
+}
+
+.results-count {
+  color: #4a5568;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.spinner {
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #4299e1;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fed7d7;
+  border: 1px solid #feb2b2;
+  border-radius: 12px;
+  margin: 40px 0;
+}
+
+.error-message h2 {
+  color: #c53030;
+  margin: 0 0 12px 0;
+}
+
+.error-message p {
+  color: #744444;
+  margin: 0 0 20px 0;
+}
+
+.btn-retry {
+  background: #4299e1;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-retry:hover {
+  background: #3182ce;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f7fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.no-results h3 {
+  color: #2d3748;
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+}
+
+.no-results p {
+  color: #4a5568;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 16px;
+  }
+  
+  .home-title {
+    font-size: 2rem;
+  }
+  
+  .activities-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

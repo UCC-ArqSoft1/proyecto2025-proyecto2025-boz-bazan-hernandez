@@ -76,3 +76,7 @@ type MyActivityResponse struct {
 	Dia        string `json:"dia"`
 	Instructor string `json:"instructor"`
 }
+
+func (Activity) TableName() string {
+	return "activities"
+}

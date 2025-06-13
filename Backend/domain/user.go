@@ -35,3 +35,7 @@ func (u *User) GetRole() string {
 	}
 	return "socio"
 }
+
+func (User) TableName() string {
+	return "users"
+}

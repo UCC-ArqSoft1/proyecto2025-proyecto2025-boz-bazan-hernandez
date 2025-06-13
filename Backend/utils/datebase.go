@@ -40,7 +40,7 @@ func ConnectDatabase() {
 
 	log.Println("✅ Conexión a la base de datos establecida")
 
-	// 🔥 AUTO-MIGRACIÓN - GORM crea las tablas automáticamente
+	//  GORM crea las tablas automáticamente
 	err = DB.AutoMigrate(
 		&domain.User{},        // Crea tabla 'users'
 		&domain.Activity{},    // Crea tabla 'activities'
@@ -50,7 +50,7 @@ func ConnectDatabase() {
 		log.Fatal("Error en la migración: ", err)
 	}
 
-	log.Println("✅ Auto-migración completada - Tablas creadas/actualizadas")
+	log.Println(" Auto-migración completada - Tablas creadas/actualizadas")
 
 	// Crear datos iniciales
 	createInitialData()
@@ -74,7 +74,7 @@ func createInitialData() {
 		if err := DB.Create(&admin).Error; err != nil {
 			log.Printf("Error creando admin: %v", err)
 		} else {
-			log.Println("✅ Usuario administrador creado - Email: admin@gym.com, Password: admin123")
+			log.Println("Usuario administrador creado - Email: admin@gym.com, Password: admin123")
 		}
 	}
 
@@ -115,7 +115,7 @@ func createInitialData() {
 		if err := DB.Create(&activities).Error; err != nil {
 			log.Printf("Error creando actividades de ejemplo: %v", err)
 		} else {
-			log.Println("✅ Actividades de ejemplo creadas")
+			log.Println(" Actividades de ejemplo creadas")
 		}
 	}
 }

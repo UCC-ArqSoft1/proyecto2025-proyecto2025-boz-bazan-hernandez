@@ -59,15 +59,18 @@ func ConnectDatabase() {
 
 // Crear usuario admin por defecto y datos de ejemplo
 func createInitialData() {
-	// Usuario administrador por defecto
-	var adminCount int64
-	DB.Model(&domain.User{}).Where("tipo_usuario = ?", true).Count(&adminCount)
+	// Usuario administrador por defecto - SIEMPRE recrear para asegurar hash correcto
+	var admin domain.User
+	result := DB.Where("email = ?", "admin@gym.com").First(&admin)
 
-	if adminCount == 0 {
-		admin := domain.User{
+	if result.Error != nil || admin.ID == 0 {
+		// Crear nuevo admin
+		hashedPassword := HashPassword("admin123")
+
+		admin = domain.User{
 			Nombre:       "Administrador",
 			Email:        "admin@gym.com",
-			PasswordHash: "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f", // "admin123" en SHA256
+			PasswordHash: hashedPassword,
 			TipoUsuario:  true,
 			Activo:       true,
 		}
@@ -75,7 +78,18 @@ func createInitialData() {
 		if err := DB.Create(&admin).Error; err != nil {
 			log.Printf("Error creando admin: %v", err)
 		} else {
-			log.Println("Usuario administrador creado - Email: admin@gym.com, Password: admin123")
+			log.Printf("✅ Usuario administrador creado - Email: admin@gym.com, Password: admin123")
+			log.Printf("🔑 Hash generado: %s", hashedPassword)
+		}
+	} else {
+		// Actualizar hash del admin existente
+		hashedPassword := HashPassword("admin123")
+		admin.PasswordHash = hashedPassword
+
+		if err := DB.Save(&admin).Error; err != nil {
+			log.Printf("Error actualizando admin: %v", err)
+		} else {
+			log.Printf("🔄 Admin actualizado con nuevo hash: %s", hashedPassword)
 		}
 	}
 

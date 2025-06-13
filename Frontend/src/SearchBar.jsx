@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import { SearchFilters } from './types';
 
-interface SearchBarProps {
-    onSearch: (filters: SearchFilters) => void;
-    onClear: () => void;
-}
-
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onClear }) => {
-    const [filters, setFilters] = useState<SearchFilters>({
+const SearchBar = ({ onSearch, onClear }) => {
+    const [filters, setFilters] = useState({
         keyword: '',
         categoria: '',
         horario: ''
     });
 
-    const handleInputChange = (field: keyof SearchFilters, value: string) => {
+    const handleInputChange = (field, value) => {
         const newFilters = { ...filters, [field]: value };
         setFilters(newFilters);
         onSearch(newFilters);

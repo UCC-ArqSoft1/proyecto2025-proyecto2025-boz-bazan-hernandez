@@ -1,12 +1,6 @@
 import React from 'react';
-import { ActivityListItem } from './types';
 
-interface ActivityCardProps {
-    activity: ActivityListItem;
-    onClick: (id: number) => void;
-}
-
-const ActivityCard: React.FC<ActivityCardProps> = ({ activity, onClick }) => {
+const ActivityCard = ({ activity, onClick }) => {
     return (
         <div className="activity-card" onClick={() => onClick(activity.id)}>
             <div className="activity-card-header">

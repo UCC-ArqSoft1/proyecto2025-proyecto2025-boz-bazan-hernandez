@@ -8,9 +8,9 @@ import (
 
 type User struct {
 	ID            uint           `json:"id" gorm:"primaryKey"`
-	Nombre        string         `json:"nombre" gorm:"not null"`
-	Email         string         `json:"email" gorm:"uniqueIndex;not null"`
-	PasswordHash  string         `json:"-" gorm:"not null"`
+	Nombre        string         `json:"nombre" gorm:"type:varchar(255);not null"`
+	Email         string         `json:"email" gorm:"type:varchar(255);uniqueIndex;not null"`
+	PasswordHash  string         `json:"-" gorm:"type:varchar(255);not null"`
 	TipoUsuario   bool           `json:"tipo_usuario" gorm:"not null"`
 	FechaCreacion time.Time      `json:"fecha_creacion" gorm:"autoCreateTime"`
 	Activo        bool           `json:"activo" gorm:"default:true"`

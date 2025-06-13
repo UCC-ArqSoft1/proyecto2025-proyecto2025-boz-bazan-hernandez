@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ActivityListItem, SearchFilters } from './types';
 import { apiService } from './api';
 import ActivityCard from './ActivityCard';
 import SearchBar from './SearchBar';
@@ -8,11 +7,11 @@ import './ActivityCard.css';
 import './SearchBar.css';
 import './Home.css';
 
-const Home: React.FC = () => {
-  const [activities, setActivities] = useState<ActivityListItem[]>([]);
-  const [filteredActivities, setFilteredActivities] = useState<ActivityListItem[]>([]);
+const Home = () => {
+  const [activities, setActivities] = useState([]);
+  const [filteredActivities, setFilteredActivities] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +25,7 @@ const Home: React.FC = () => {
       const data = await apiService.getActivities();
       setActivities(data);
       setFilteredActivities(data);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error loading activities:', err);
       setError('Error al cargar las actividades. Verifica que el backend esté ejecutándose en puerto 8080.');
     } finally {
@@ -34,10 +33,9 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleSearch = (filters: SearchFilters) => {
+  const handleSearch = (filters) => {
     let filtered = [...activities];
 
-    // Filtrar por palabra clave (título + profesor)
     if (filters.keyword && filters.keyword.trim()) {
       const keyword = filters.keyword.toLowerCase();
       filtered = filtered.filter(activity => 
@@ -46,7 +44,6 @@ const Home: React.FC = () => {
       );
     }
 
-    // Filtrar por categoría (buscar en título)
     if (filters.categoria && filters.categoria.trim()) {
       const categoria = filters.categoria.toLowerCase();
       filtered = filtered.filter(activity => 
@@ -54,7 +51,6 @@ const Home: React.FC = () => {
       );
     }
 
-    // Filtrar por horario
     if (filters.horario && filters.horario.trim()) {
       const horario = filters.horario;
       filtered = filtered.filter(activity => {
@@ -78,7 +74,7 @@ const Home: React.FC = () => {
     setFilteredActivities(activities);
   };
 
-  const handleActivityClick = (id: number) => {
+  const handleActivityClick = (id) => {
     navigate(`/actividad/${id}`);
   };
 

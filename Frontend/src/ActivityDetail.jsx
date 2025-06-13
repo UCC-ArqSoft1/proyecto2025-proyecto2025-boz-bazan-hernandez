@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ActivityDetail, ApiErrorResponse } from './types';
 import { apiService } from './api';
 import { isAuthenticated } from './utils';
 import './ActivityDetail.css';
 
-const ActivityDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+const ActivityDetailPage = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [activity, setActivity] = useState<ActivityDetail | null>(null);
+  const [activity, setActivity] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState('');
   const [enrolling, setEnrolling] = useState(false);
-  const [enrollMessage, setEnrollMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [enrollMessage, setEnrollMessage] = useState(null);
 
   useEffect(() => {
     if (id) {
@@ -20,13 +19,13 @@ const ActivityDetailPage: React.FC = () => {
     }
   }, [id]);
 
-  const loadActivity = async (activityId: number) => {
+  const loadActivity = async (activityId) => {
     try {
       setLoading(true);
       setError('');
       const data = await apiService.getActivityById(activityId);
       setActivity(data);
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error loading activity:', err);
       setError('Error al cargar la actividad. Verifica que el backend esté ejecutándose.');
     } finally {
@@ -53,18 +52,18 @@ const ActivityDetailPage: React.FC = () => {
       
       setEnrollMessage({
         type: 'success',
-        text: response.message // Backend envía {"message": "Inscripción exitosa"}
+        text: response.message
       });
       
       await loadActivity(activity.id);
       
-    } catch (err: any) {
+    } catch (err) {
       console.error('Error enrolling:', err);
       
       let errorMessage = 'Error al inscribirse a la actividad';
       
       if (err.response?.data?.error) {
-        errorMessage = err.response.data.error; // Backend envía {"error": "La actividad está llena"}
+        errorMessage = err.response.data.error;
       } else if (err.message) {
         errorMessage = err.message;
       }
@@ -120,7 +119,7 @@ const ActivityDetailPage: React.FC = () => {
             alt={activity.titulo}
             className="activity-image"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/placeholder-activity.jpg';
+              e.target.src = '/placeholder-activity.jpg';
             }}
           />
         </div>

@@ -22,7 +22,7 @@ func NewUserService() *UserService {
     }
 }
 
-// 🔥 TRANSACCIÓN COMPLETA - Inscripción con validaciones
+//TRANSACCIÓN COMPLETA - Inscripción con validaciones
 func (s *UserService) EnrollInActivity(userID, activityID uint) error {
     // Usar transacción GORM para operación atómica
     return utils.DB.Transaction(func(tx *gorm.DB) error {

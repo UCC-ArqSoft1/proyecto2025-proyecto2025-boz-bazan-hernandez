@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"gym-backend/domain" // Importar tus modelos
 
@@ -83,6 +84,8 @@ func createInitialData() {
 	DB.Model(&domain.Activity{}).Count(&activityCount)
 
 	if activityCount == 0 {
+		horarioBoxeo, _ := time.Parse("2006-01-02 15:04:05", "2025-06-13 18:00:00")
+		horarioFuncional, _ := time.Parse("2006-01-02 15:04:05", "2025-06-13 12:00:00")
 		activities := []domain.Activity{
 			{
 				Titulo:         "Boxeo",
@@ -90,11 +93,10 @@ func createInitialData() {
 				Categoria:      "Cardio",
 				Instructor:     "Pepe López",
 				DiaSemana:      "Martes",
-				Horario:        "2025-06-06 18:00:00",
+				Horario:        horarioBoxeo,
 				Duracion:       60,
 				CupoMaximo:     10,
 				CupoDisponible: 10,
-				Foto:           "https://example.com/boxeo.jpg",
 				Activo:         true,
 			},
 			{
@@ -103,7 +105,7 @@ func createInitialData() {
 				Categoria:      "Funcional",
 				Instructor:     "Juan Hernández",
 				DiaSemana:      "Miércoles",
-				Horario:        "2025-08-08 12:00:00",
+				Horario:        horarioFuncional,
 				Duracion:       45,
 				CupoMaximo:     15,
 				CupoDisponible: 15,

@@ -13,7 +13,7 @@ type Activity struct {
 	Categoria      string         `json:"categoria" gorm:"not null"`
 	Instructor     string         `json:"instructor" gorm:"not null"`
 	DiaSemana      string         `json:"dia" gorm:"not null"`
-	Horario        string         `json:"horario" gorm:"type:time;not null"`
+	Horario        time.Time      `json:"horario" gorm:"type:datetime;not null"`
 	Duracion       int            `json:"duracion" gorm:"not null"`
 	CupoMaximo     int            `json:"cupo" gorm:"not null"`
 	CupoDisponible int            `json:"cupo_disponible" gorm:"not null"`

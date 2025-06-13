@@ -19,47 +19,16 @@ func NewActivityService() *ActivityService {
 	}
 }
 
-func (s *ActivityService) GetAllActivities() ([]domain.ActivityListResponse, error) {
-	activities, err := s.activityDAO.FindAll()
-	if err != nil {
-		return nil, err
-	}
-
-	var response []domain.ActivityListResponse
-	for _, activity := range activities {
-		response = append(response, domain.ActivityListResponse{
-			ID:       activity.ID,
-			Titulo:   activity.Titulo,
-			Horario:  activity.Horario,
-			Profesor: activity.Instructor,
-		})
-	}
-
-	return response, nil
+func (s *ActivityService) GetAllActivities() ([]domain.Activity, error) {
+	return s.activityDAO.FindAll()
 }
 
-func (s *ActivityService) GetActivityByID(id uint) (*domain.ActivityDetailResponse, error) {
+func (s *ActivityService) GetActivityByID(id uint) (*domain.Activity, error) {
 	activity, err := s.activityDAO.FindByID(id)
 	if err != nil {
 		return nil, errors.New("actividad no encontrada")
 	}
-
-	duracionStr := strconv.Itoa(activity.Duracion) + " min"
-
-	response := &domain.ActivityDetailResponse{
-		ID:          activity.ID,
-		Titulo:      activity.Titulo,
-		Descripcion: activity.Descripcion,
-		Dia:         activity.DiaSemana,
-		Horario:     activity.Horario,
-		Duracion:    duracionStr,
-		Cupo:        activity.CupoMaximo,
-		Categoria:   activity.Categoria,
-		Instructor:  activity.Instructor,
-		FotoURL:     activity.Foto,
-	}
-
-	return response, nil
+	return activity, nil
 }
 
 func (s *ActivityService) CreateActivity(req domain.CreateActivityRequest) (uint, error) {
@@ -143,6 +112,5 @@ func (s *ActivityService) DeleteActivity(id uint) error {
 	if err != nil {
 		return errors.New("actividad no encontrada")
 	}
-
 	return s.activityDAO.Delete(id)
 }

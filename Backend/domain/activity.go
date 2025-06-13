@@ -26,55 +26,55 @@ type Activity struct {
 }
 
 type CreateActivityRequest struct {
-	Titulo      string `json:"titulo" binding:"required"`
-	Descripcion string `json:"descripcion"`
-	Categoria   string `json:"categoria" binding:"required"`
-	Instructor  string `json:"instructor" binding:"required"`
-	Dia         string `json:"dia" binding:"required"`
-	Horario     string `json:"horario" binding:"required"`
-	Duracion    string `json:"duracion" binding:"required"`
-	Cupo        int    `json:"cupo" binding:"required,min=1"`
-	FotoURL     string `json:"foto_url"`
+	Titulo      string    `json:"titulo" binding:"required"`
+	Descripcion string    `json:"descripcion"`
+	Categoria   string    `json:"categoria" binding:"required"`
+	Instructor  string    `json:"instructor" binding:"required"`
+	Dia         string    `json:"dia" binding:"required"`
+	Horario     time.Time `json:"horario" binding:"required"`
+	Duracion    string    `json:"duracion" binding:"required"`
+	Cupo        int       `json:"cupo" binding:"required,min=1"`
+	FotoURL     string    `json:"foto_url"`
 }
 
 type UpdateActivityRequest struct {
-	Titulo      *string `json:"titulo"`
-	Descripcion *string `json:"descripcion"`
-	Categoria   *string `json:"categoria"`
-	Instructor  *string `json:"instructor"`
-	Dia         *string `json:"dia"`
-	Horario     *string `json:"horario"`
-	Duracion    *string `json:"duracion"`
-	Cupo        *int    `json:"cupo"`
-	FotoURL     *string `json:"foto_url"`
+	Titulo      *string    `json:"titulo"`
+	Descripcion *string    `json:"descripcion"`
+	Categoria   *string    `json:"categoria"`
+	Instructor  *string    `json:"instructor"`
+	Dia         *string    `json:"dia"`
+	Horario     *time.Time `json:"horario"`
+	Duracion    *string    `json:"duracion"`
+	Cupo        *int       `json:"cupo"`
+	FotoURL     *string    `json:"foto_url"`
 }
 
 type ActivityListResponse struct {
-	ID       uint   `json:"id"`
-	Titulo   string `json:"titulo"`
-	Horario  string `json:"horario"`
-	Profesor string `json:"profesor"`
+	ID       uint      `json:"id"`
+	Titulo   string    `json:"titulo"`
+	Horario  time.Time `json:"horario"`
+	Profesor string    `json:"profesor"`
 }
 
 type ActivityDetailResponse struct {
-	ID          uint   `json:"id"`
-	Titulo      string `json:"titulo"`
-	Descripcion string `json:"descripcion"`
-	Dia         string `json:"dia"`
-	Horario     string `json:"horario"`
-	Duracion    string `json:"duracion"`
-	Cupo        int    `json:"cupo"`
-	Categoria   string `json:"categoria"`
-	Instructor  string `json:"instructor"`
-	FotoURL     string `json:"foto_url"`
+	ID          uint      `json:"id"`
+	Titulo      string    `json:"titulo"`
+	Descripcion string    `json:"descripcion"`
+	Dia         string    `json:"dia"`
+	Horario     time.Time `json:"horario"`
+	Duracion    string    `json:"duracion"`
+	Cupo        int       `json:"cupo"`
+	Categoria   string    `json:"categoria"`
+	Instructor  string    `json:"instructor"`
+	FotoURL     string    `json:"foto_url"`
 }
 
 type MyActivityResponse struct {
-	ID         uint   `json:"id"`
-	Titulo     string `json:"titulo"`
-	Horario    string `json:"horario"`
-	Dia        string `json:"dia"`
-	Instructor string `json:"instructor"`
+	ID         uint      `json:"id"`
+	Titulo     string    `json:"titulo"`
+	Horario    time.Time `json:"horario"`
+	Dia        string    `json:"dia"`
+	Instructor string    `json:"instructor"`
 }
 
 func (Activity) TableName() string {

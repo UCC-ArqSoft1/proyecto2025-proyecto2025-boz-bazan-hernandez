@@ -25,8 +25,28 @@ type LoginRequest struct {
 }
 
 type LoginResponse struct {
-	Token string `json:"token"`
-	Role  string `json:"role"`
+	Token string   `json:"token"`
+	Role  string   `json:"role"`
+	User  UserInfo `json:"user"`
+}
+
+type RegisterRequest struct {
+	Nombre      string `json:"nombre" binding:"required,min=2,max=255"`
+	Email       string `json:"email" binding:"required,email"`
+	Password    string `json:"password" binding:"required,min=6"`
+	TipoUsuario bool   `json:"tipo_usuario"`
+}
+
+type RegisterResponse struct {
+	Message string   `json:"message"`
+	User    UserInfo `json:"user"`
+}
+
+type UserInfo struct {
+	ID     uint   `json:"id"`
+	Nombre string `json:"nombre"`
+	Email  string `json:"email"`
+	Role   string `json:"role"`
 }
 
 func (u *User) GetRole() string {
@@ -34,6 +54,15 @@ func (u *User) GetRole() string {
 		return "administrador"
 	}
 	return "socio"
+}
+
+func (u *User) ToUserInfo() UserInfo {
+	return UserInfo{
+		ID:     u.ID,
+		Nombre: u.Nombre,
+		Email:  u.Email,
+		Role:   u.GetRole(),
+	}
 }
 
 func (User) TableName() string {

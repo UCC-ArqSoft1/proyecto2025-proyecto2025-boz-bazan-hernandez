@@ -1,0 +1,93 @@
+/* pages/Admin/AdminActivitiesPage.css */
+.admin-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.create-button {
+  padding: 0.5rem 1rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.create-button:hover {
+  background-color: #059669;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.table-header {
+  background-color: #f3f4f6;
+}
+
+.table-header th {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-row {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-cell {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.action-link {
+  color: #4f46e5;
+  text-decoration: none;
+  margin-right: 1rem;
+  transition: color 0.2s;
+}
+
+.action-link:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+
+.delete-link {
+  color: #ef4444;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.delete-link:hover {
+  color: #dc2626;
+  text-decoration: underline;
+}

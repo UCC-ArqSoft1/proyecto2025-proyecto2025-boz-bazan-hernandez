@@ -35,3 +35,24 @@ func (ctrl *AuthController) Login(c *gin.Context) {
 
 	c.JSON(http.StatusOK, response)
 }
+
+func (ctrl *AuthController) Register(c *gin.Context) {
+	var req domain.RegisterRequest
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Datos inválidos"})
+		return
+	}
+
+	response, err := ctrl.authService.Register(req)
+	if err != nil {
+		if err.Error() == "el email ya está registrado" {
+			c.JSON(http.StatusConflict, gin.H{"error": "El email ya está registrado"})
+			return
+		}
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusCreated, response)
+}

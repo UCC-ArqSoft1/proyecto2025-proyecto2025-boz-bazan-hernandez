@@ -25,6 +25,13 @@ func (d *UserDAO) FindByID(id uint) (*domain.User, error) {
 	return &user, err
 }
 
+// Verificar si el email ya existe (para registro)
+func (d *UserDAO) EmailExists(email string) (bool, error) {
+	var count int64
+	err := utils.DB.Model(&domain.User{}).Where("email = ?", email).Count(&count).Error
+	return count > 0, err
+}
+
 // Crear nuevo usuario
 func (d *UserDAO) Create(user *domain.User) error {
 	return utils.DB.Create(user).Error

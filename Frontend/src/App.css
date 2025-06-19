@@ -1,120 +1,267 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* App.css */
 
+/* Estilos base */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #f7fafc;
-    color: #2d3748;
-    line-height: 1.6;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc;
 }
 
-.App {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.app-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 16px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
 }
 
-.app-header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* Estilos para el contenedor principal */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.app-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0;
+/* Estilos para el contenido principal */
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
 }
 
-.app-subtitle {
-    font-size: 0.9rem;
-    opacity: 0.9;
-    margin: 0;
+/* Estilos para los botones */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
 }
 
-.app-main {
-    flex: 1;
-    padding-top: 0;
+.btn-primary {
+  background-color: #4f46e5;
+  color: white;
+  border: 1px solid #4f46e5;
 }
 
-.app-footer {
-    background: #2d3748;
-    color: #a0aec0;
-    text-align: center;
-    padding: 20px 24px;
-    margin-top: 40px;
+.btn-primary:hover {
+  background-color: #4338ca;
+  border-color: #4338ca;
 }
 
-.app-footer p {
-    font-size: 0.875rem;
-    margin: 0;
+.btn-secondary {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
 }
 
-.not-found {
-    text-align: center;
-    padding: 80px 24px;
-    max-width: 600px;
-    margin: 0 auto;
+.btn-secondary:hover {
+  background-color: #c7d2fe;
 }
 
-.not-found h2 {
-    font-size: 2rem;
-    color: #2d3748;
-    margin-bottom: 16px;
+.btn-danger {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
 
-.not-found p {
-    color: #4a5568;
-    margin-bottom: 24px;
-    font-size: 1.1rem;
+.btn-danger:hover {
+  background-color: #fecaca;
 }
 
-.not-found a {
-    color: #4299e1;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 12px 24px;
-    border: 2px solid #4299e1;
-    border-radius: 8px;
-    display: inline-block;
-    transition: all 0.2s ease;
+/* Estilos para las tarjetas */
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.not-found a:hover {
-    background: #4299e1;
-    color: white;
+.card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+.card-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Estilos para los formularios */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+/* Estilos para los mensajes de alerta */
+.alert {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-success {
+  color: #065f46;
+  background-color: #d1fae5;
+  border-color: #a7f3d0;
+}
+
+.alert-error {
+  color: #b91c1c;
+  background-color: #fee2e2;
+  border-color: #fecaca;
+}
+
+.alert-info {
+  color: #1e40af;
+  background-color: #dbeafe;
+  border-color: #bfdbfe;
+}
+
+/* Estilos para la navegación */
+.nav-link {
+  color: #4f46e5;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+
+/* Estilos para las tablas */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: #f3f4f6;
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+/* Estilos para el contenedor */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Media queries para responsividad */
 @media (max-width: 768px) {
-    .app-header-content {
-        padding: 0 16px;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-    }
-
-    .app-title {
-        font-size: 1.25rem;
-    }
-
-    .app-subtitle {
-        font-size: 0.8rem;
-    }
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
+
+/* Estilos para el modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a202c;
+    color: #f7fafc;
+  }
+  
+  .card {
+    background-color: #2d3748;
+    color: #f7fafc;
+  }
+  
+  .form-control {
+    background-color: #4a5568;
+    color: #f7fafc;
+    border-color: #4a5568;
+  }
+  
+  .form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+  }
+  
+  .table th {
+    background-color: #2d3748;
+    color: #cbd5e0;
+  }
+  
+  .table td {
+    color: #e2e8f0;
+    border-bottom-color: #4a5568;
+  }
+}
+
+/* Utilidades adicionales */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-5 { margin-top: 1.25rem; }
+.mt-6 { margin-top: 1.5rem; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-5 { margin-bottom: 1.25rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.p-5 { padding: 1.25rem; }
+.p-6 { padding: 1.5rem; }

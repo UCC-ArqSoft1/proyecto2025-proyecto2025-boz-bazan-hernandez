@@ -36,6 +36,43 @@ func (s *AuthService) Login(req domain.LoginRequest) (*domain.LoginResponse, err
 	response := &domain.LoginResponse{
 		Token: token,
 		Role:  user.GetRole(),
+		User:  user.ToUserInfo(),
+	}
+
+	return response, nil
+}
+
+func (s *AuthService) Register(req domain.RegisterRequest) (*domain.RegisterResponse, error) {
+	// Verificar si el email ya existe
+	exists, err := s.userDAO.EmailExists(req.Email)
+	if err != nil {
+		return nil, errors.New("error verificando email")
+	}
+
+	if exists {
+		return nil, errors.New("el email ya está registrado")
+	}
+
+	// Hashear la contraseña - ajustado según tu función utils.HashPassword
+	hashedPassword := utils.HashPassword(req.Password)
+
+	// Crear nuevo usuario
+	user := &domain.User{
+		Nombre:       req.Nombre,
+		Email:        req.Email,
+		PasswordHash: hashedPassword,
+		TipoUsuario:  req.TipoUsuario,
+		Activo:       true,
+	}
+
+	err = s.userDAO.Create(user)
+	if err != nil {
+		return nil, errors.New("error creando usuario")
+	}
+
+	response := &domain.RegisterResponse{
+		Message: "Usuario registrado exitosamente",
+		User:    user.ToUserInfo(),
 	}
 
 	return response, nil

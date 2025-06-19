@@ -1,0 +1,44 @@
+/* components/Activities/ActivityDetail.css */
+.activity-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.activity-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .activity-detail-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.activity-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .activity-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.activity-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activity-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  width: 100%;
+  height: 100%;
+}

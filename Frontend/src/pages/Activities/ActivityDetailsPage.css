@@ -1,0 +1,17 @@
+/* pages/Activities/ActivityDetailsPage.css */
+.details-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #4f46e5;
+  transition: color 0.2s;
+}
+
+.back-button:hover {
+  color: #3730a3;
+}
